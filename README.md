@@ -1,12 +1,58 @@
-CAS Overlay Template
+CAS Overlay Template [![Build Status](https://travis-ci.org/apereo/cas-overlay-template.svg?branch=master)](https://travis-ci.org/apereo/cas-overlay-template)
 =======================
 
 Generic CAS WAR overlay to exercise the latest versions of CAS. This overlay could be freely used as a starting template for local CAS war overlays.
 
 # Versions
 
-- CAS `6.1.x`
+- CAS `6.2.x`
 - JDK `11`
+
+
+# JEM modifications
+
+local modifications for testing cas_validate
+
+Some config files have been edited.
+
+generate keys
+
+```bash
+keytool -genkeypair \
+   -alias casRoot \
+   -keyalg RSA \
+   -keypass "changeit" \
+   -storepass "changeit" \
+   -keystore "./etc/cas/thekeystore"  \
+   -dname , "-ext", "SAN=${subjectAltName}"
+
+```
+
+keytool -genkeypair -alias casRoot \
+-dname cn=cas.activimetrics.com \
+-validity 365 \
+-keyalg RSA \
+-keypass changeit \
+-keystore etc/cas/thekeystore \
+-storepass changeit
+
+keytool -genkeypair -alias cas \
+-dname cn=cas.activimetrics.com \
+-validity 365 \
+-keyalg RSA \
+-keypass changeit \
+-keystore etc/cas/thekeystore \
+-storepass changeit
+
+
+
+blah blah.  haven't figure that out yet
+
+            commandLine "keytool", "-genkeypair", "-alias", "cas",
+                    "-keyalg", "RSA",
+                    "-keypass", "changeit", "-storepass", "changeit",
+                    "-keystore", keystorePath,
+                    "-dname", dn, "-ext", "SAN=${subjectAltName}"
 
 # Overview
 
